@@ -19,7 +19,7 @@ char				*ft_strmap(char const *s, char (*f)(char))
 	int				n;
 
 	n = ft_strlen(s);
-	str = (char*)ft_memalloc(n);
+	str = (char*)ft_memalloc(n + 1);
 	if (str == NULL)
 		return (NULL);
 	i = 0;

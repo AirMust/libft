@@ -57,8 +57,12 @@ char				**ft_strsplit(char const *s, char c)
 	char			**rez;
 
 	i = 0;
+	if (c > 126 || c < 32)
+		return (NULL);
 	w = ft_wcount(s, c);
 	rez = (char**)malloc(sizeof(char*) * (w + 1));
+	if (rez == NULL)
+		return (NULL);
 	w = 0;
 	while (s[i])
 	{
@@ -71,6 +75,6 @@ char				**ft_strsplit(char const *s, char c)
 			rez[w++] = ft_new_sub(s, start, i);
 	}
 	rez[w] = (char*)malloc(sizeof(char));
-	rez[w][0] = 0;
+	rez[w] = 0;
 	return (rez);
 }

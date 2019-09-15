@@ -29,16 +29,15 @@ static char			*ft_numb_char(int n)
 			mn *= 10;
 		i++;
 	}
-	str = (char*)malloc(sizeof(char) * i);
-	i = 0;
+	str = (char*)ft_memalloc(sizeof(char) * (i));
 	while (mn > 0)
 	{
-		str[i++] = n / mn + '0';
+		*(str++) = n / mn + '0';
 		n %= mn;
 		mn /= 10;
 	}
-	str[i + 1] = 0;
-	return (str);
+	*(str) = 0;
+	return (str - i);
 }
 
 char				*ft_itoa(int n)
@@ -48,17 +47,14 @@ char				*ft_itoa(int n)
 
 	i = 1;
 	if (n == 0)
-		return ("0");
+		return (ft_strdup("0"));
 	else if (n == -2147483648)
-		return ("-2147483648");
+		return (ft_strdup("-2147483648"));
 	if (n < 0)
-	{
-		n *= -1;
 		i = -1;
-	}
-	str = ft_numb_char(n);
+	str = ft_numb_char(n * i);
 	if (i == -1)
-		str = ft_strjoin("-", (char const *)str);
-	str[ft_strlen(str) - 1] = 0;
+		str = ft_strjoin(ft_strdup("-"), (char const *)str);
+	str[ft_strlen(str)+1] = 0;
 	return (str);
 }

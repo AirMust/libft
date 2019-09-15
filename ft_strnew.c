@@ -14,5 +14,12 @@
 
 char			*ft_strnew(size_t size)
 {
-	return ((char*)ft_memalloc((size + 1) * sizeof(char)));
+	char		*s;
+	
+	if ((int)size < 0)
+		return (NULL);
+	s = (char*)ft_memalloc((size + 1) * sizeof(char));
+	if (s == NULL)
+		return (NULL);
+	return (s);
 }

@@ -21,8 +21,10 @@ const char *needle, size_t len)
 	if (!*needle)
 		return ((char*)haystack);
 	n = ft_strlen(needle);
+	if (len == 0)
+		return (NULL);
 	l = 1;
-	while (n >= len && *haystack != 0 && ft_strncmp(haystack, needle, n))
+	while (n < len && *haystack != 0 && ft_strncmp(haystack, needle, n))
 	{
 		len--;
 		haystack++;

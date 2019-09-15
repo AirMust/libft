@@ -16,6 +16,8 @@ void			*ft_memalloc(size_t size)
 {
 	void		*mem;
 
+	if ((int)size < 0)
+		return (0);
 	mem = malloc(size);
 	if (mem == NULL)
 		return (NULL);

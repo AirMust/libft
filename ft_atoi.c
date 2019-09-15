@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 int					ft_atoi(char *nptr)
 {
 	int				i;
 	int				flag;
-	long			x;
-
+	long long		x;
+	
 	x = 0;
 	flag = 1;
 	i = 0;
@@ -29,5 +29,6 @@ int					ft_atoi(char *nptr)
 			flag = -1;
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 		x = x * 10 + (nptr[i++] - 48);
-	return ((int)(x * flag));
+	return (x * flag > 2147483648 ? 0: \
+			x * flag < -2147483648 ? -1: (int)x * flag);
 }

@@ -23,7 +23,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len)
 	i = 0;
 	while (s[i + start] != 0 && i < (int)len)
 	{
-		sub[i] = s[i] + start;
+		sub[i] = s[i + start];
 		i++;
 	}
 	sub[i] = 0;
