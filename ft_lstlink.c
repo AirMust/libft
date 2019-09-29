@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-void	ft_lstlink(t_list **alst, t_list *new1)
+void	ft_lstlink(t_list **alst, t_list *new)
 {
-	if (new1 == NULL)
+	if (new == NULL)
 		return ;
-	new1->next = *alst;
-	*alst = new1;
+	new->next = *alst;
+	*alst = new;
 }

@@ -20,7 +20,7 @@ char				*ft_strtrim(char const *s)
 	int				k;
 
 	if (s == NULL)
-		return ("");
+		return (NULL);
 	i = ft_strlen(s) - 1;
 	j = 0;
 	while (s[j] && (s[j] == ' ' || s[j] == '\t' || s[j] == '\n'))

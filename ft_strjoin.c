@@ -15,7 +15,7 @@
 char				*ft_strjoin(char const *s1, char const *s2)
 {
 	char			*str;
-	int				n;
+	size_t			n;
 
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);

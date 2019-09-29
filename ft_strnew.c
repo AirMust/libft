@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-char			*ft_strnew(size_t size)
+char		*ft_strnew(size_t size)
 {
-	char		*s;
-	
+	char	*s;
+
 	if ((int)size < 0)
 		return (NULL);
 	s = (char*)ft_memalloc((size + 1) * sizeof(char));

@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-int					ft_strncmp(const char *s1, const char *s2, size_t len)
+int			ft_strncmp(const char *s1, const char *s2, size_t len)
 {
-	int				i;
+	size_t	i;
 
 	i = 0;
 	while (s1[i] && len > 0 && s1[i] == s2[i] && s2[i])

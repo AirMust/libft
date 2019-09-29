@@ -15,13 +15,13 @@
 char				*ft_strsub(char const *s, unsigned int start, size_t len)
 {
 	char			*sub;
-	int				i;
+	size_t			i;
 
 	sub = ft_strnew(len);
 	if (sub == NULL)
 		return (NULL);
 	i = 0;
-	while (s[i + start] != 0 && i < (int)len)
+	while (s[i + start] != 0 && i < len)
 	{
 		sub[i] = s[i + start];
 		i++;

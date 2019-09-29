@@ -12,49 +12,59 @@
 
 #include "libft.h"
 
-static char			*ft_numb_char(int n)
+static int		counter(int n)
 {
-	int				i;
-	long			mn;
-	int				nb;
-	char			*str;
+	int			result;
 
-	i = 0;
-	nb = n;
-	mn = 1;
-	while (nb > 0)
+	result = 0;
+	if (n < 0)
 	{
-		nb /= 10;
-		if (nb > 0)
-			mn *= 10;
-		i++;
+		result++;
+		n *= -1;
 	}
-	str = (char*)ft_memalloc(sizeof(char) * (i));
-	while (mn > 0)
+	if (n == 0)
+		return (1);
+	while (n > 0)
 	{
-		*(str++) = n / mn + '0';
-		n %= mn;
-		mn /= 10;
+		result++;
+		n /= 10;
 	}
-	*(str) = 0;
-	return (str - i);
+	return (result);
 }
 
-char				*ft_itoa(int n)
+static char		*make_str(int flag, int n, int len)
 {
-	int				i;
-	char			*str;
+	char		*res;
 
-	i = 1;
-	if (n == 0)
-		return (ft_strdup("0"));
-	else if (n == -2147483648)
+	res = ft_strnew(len);
+	if (res == NULL)
+		return (NULL);
+	while (len-- > 0)
+	{
+		if (flag == -1 && len == 0)
+		{
+			res[len] = '-';
+			break ;
+		}
+		res[len] = '0' + (n % 10);
+		n /= 10;
+	}
+	return (res);
+}
+
+char			*ft_itoa(int n)
+{
+	int			flag;
+	int			len;
+
+	flag = 1;
+	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
+	len = counter(n);
 	if (n < 0)
-		i = -1;
-	str = ft_numb_char(n * i);
-	if (i == -1)
-		str = ft_strjoin(ft_strdup("-"), (char const *)str);
-	str[ft_strlen(str)+1] = 0;
-	return (str);
+	{
+		flag = -1;
+		n *= -1;
+	}
+	return (make_str(flag, n, len));
 }

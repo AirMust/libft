@@ -66,19 +66,25 @@ SRC = ft_lstnew.c \
 	ft_lstlink.c \
 	ft_putendl.c \
 	ft_strdup.c \
-	ft_strnew.c
+	ft_strnew.c \
+	ft_lstaddcontent.c \
+	ft_lstdel.c \
+	ft_lstdelone.c \
+	ft_lstmap.c \
+	ft_lstpushback.c 
+
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME):
 	gcc -Wall -Wextra -Werror -c $(SRC) -I libft.h
-	ar rc $(NAME) *.o
-
+	ar rcs $(NAME) $(OBJ)
+	ranlib $(NAME)
 clean:
-	rm -f *.o
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f *.*gch
 
 re: fclean all

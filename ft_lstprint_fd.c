@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstprint_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
+/*   By: slynell <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 15:19:50 by slynell           #+#    #+#             */
-/*   Updated: 2019/09/14 15:19:51 by slynell          ###   ########.fr       */
+/*   Created: 2019/09/17 19:42:23 by slynell           #+#    #+#             */
+/*   Updated: 2019/09/17 19:42:26 by slynell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(const char *str)
+void		ft_lstprint_fd(t_list *alst, int fd)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != 0)
-		i++;
-	return (i);
+	while (alst)
+	{
+		ft_putstr_fd((char*)alst->content, fd);
+		alst = alst->next;
+	}
+	ft_putstr_fd("\n", fd);
 }

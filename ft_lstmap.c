@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slynell <slynell@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,38 +12,41 @@
 
 #include "libft.h"
 
-static void	ft_print_nbr(int n, int fd, long long mn)
+static void		remove_list(t_list *lst)
 {
-	int		nb;
+	t_list	temp;
 
-	nb = n;
-	while (nb > 0)
+	while (lst != NULL)
 	{
-		nb /= 10;
-		mn *= 10;
-	}
-	mn /= 10;
-	while (mn > 0)
-	{
-		ft_putchar_fd(n / mn + '0', fd);
-		n %= mn;
-		mn /= 10;
+		temp.next = lst->next;
+		free(lst->content);
+		free(lst);
+		lst = temp.next;
 	}
 }
 
-void		ft_putnbr_fd(int n, int fd)
+t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	if (n == 0)
-		ft_putstr_fd("0", fd);
-	else if (n == -2147483648)
-		ft_putstr_fd("-2147483648", fd);
-	else
+	t_list		*temp;
+	t_list		*new;
+
+	if (!lst)
+		return (NULL);
+	new = ft_lstnew((f(lst))->content, (f(lst))->content_size);
+	if (new == NULL)
+		return (NULL);
+	lst = lst->next;
+	temp = new;
+	while (lst)
 	{
-		if (n < 0)
+		new->next = ft_lstnew((f(lst))->content, (f(lst))->content_size);
+		if (!(new->next))
 		{
-			n *= -1;
-			ft_putchar_fd('-', fd);
+			remove_list(temp);
+			return (NULL);
 		}
-		ft_print_nbr(n, fd, 1);
+		lst = lst->next;
+		new = new->next;
 	}
+	return (temp);
 }
